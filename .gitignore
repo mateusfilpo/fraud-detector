@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### Neo4j (se usar bind mounts locais) ###
+/data/
+/logs/
+/import/
+/plugins/
