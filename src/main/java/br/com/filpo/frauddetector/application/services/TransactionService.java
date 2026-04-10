@@ -8,6 +8,7 @@ import br.com.filpo.frauddetector.domain.models.Device;
 import br.com.filpo.frauddetector.domain.models.Location;
 import br.com.filpo.frauddetector.domain.models.Transaction;
 import br.com.filpo.frauddetector.domain.ports.in.TransactionUseCase;
+import br.com.filpo.frauddetector.domain.ports.in.FraudDetectionUseCase;
 import br.com.filpo.frauddetector.domain.ports.out.AccountRepositoryPort;
 import br.com.filpo.frauddetector.domain.ports.out.MerchantRepositoryPort;
 import br.com.filpo.frauddetector.domain.ports.out.TransactionRepositoryPort;
@@ -25,6 +26,7 @@ public class TransactionService implements TransactionUseCase {
     private final TransactionRepositoryPort transactionRepositoryPort;
     private final AccountRepositoryPort accountRepositoryPort;
     private final MerchantRepositoryPort merchantRepositoryPort;
+    private final FraudDetectionUseCase fraudDetectionUseCase;
 
     @Override
     @Transactional
@@ -59,7 +61,11 @@ public class TransactionService implements TransactionUseCase {
         transaction.setLocation(location);
         transaction.setMerchantId(merchantId);
 
-        return transactionRepositoryPort.save(transaction);
+        Transaction savedTransaction = transactionRepositoryPort.save(transaction);
+
+        fraudDetectionUseCase.analyzeTransaction(savedTransaction.getTransactionId());
+
+        return savedTransaction;
     }
 
     @Override
