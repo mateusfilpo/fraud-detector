@@ -24,9 +24,7 @@ public class TransactionNode {
 
     private BigDecimal amount;
     private LocalDateTime timestamp;
-    private String channel; // Enum como string
-
-    // ── Relacionamentos (TransactionNode é o hub central) ──
+    private String channel;
 
     @Relationship(type = "SENT", direction = Relationship.Direction.INCOMING)
     private AccountNode sender;

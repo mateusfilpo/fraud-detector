@@ -76,7 +76,6 @@ public class TransactionPersistenceAdapter implements TransactionRepositoryPort 
 
     @Override
     public List<Transaction> findByAccountId(String accountId) {
-        // Busca transações onde a conta é sender OU receiver
         List<TransactionNode> sent = transactionRepository.findBySenderAccountId(accountId);
         List<TransactionNode> received = transactionRepository.findByReceiverAccountId(accountId);
 

@@ -21,12 +21,12 @@ public class FraudAlertNode {
     @Id
     private String alertId;
 
-    private String transactionId; // Referência por ID (sem @Relationship)
-    private String accountId; // Referência por ID (sem @Relationship)
-    private String pattern; // FraudPattern como string
+    private String transactionId;
+    private String accountId;
+    private String pattern;
     private String description;
     private int riskScore;
-    private List<String> evidencePath; // Neo4j suporta listas nativamente
-    private String status; // AlertStatus como string
+    private List<String> evidencePath;
+    private String status;
     private LocalDateTime createdAt;
 }

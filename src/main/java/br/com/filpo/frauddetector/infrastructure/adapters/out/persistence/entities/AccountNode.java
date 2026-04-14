@@ -21,7 +21,7 @@ public class AccountNode {
     private String accountId;
 
     private String holder;
-    private String type; // Enum armazenado como string
+    private String type;
     private LocalDateTime createdAt;
-    private String status; // Enum armazenado como string
+    private String status;
 }
