@@ -1,13 +1,11 @@
 package br.com.filpo.frauddetector;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class FraudDetectorApplicationTests {
+class FraudDetectorApplicationTests extends Neo4jIntegrationTest {
 
 	@Test
 	void contextLoads() {
+		// Verifica que o contexto Spring sobe com Neo4j via Testcontainers
 	}
-
 }

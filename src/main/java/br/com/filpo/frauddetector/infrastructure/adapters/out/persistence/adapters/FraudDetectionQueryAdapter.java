@@ -161,7 +161,7 @@ public class FraudDetectionQueryAdapter implements FraudDetectionQueryPort {
             String merchantId, int daysThreshold) {
         return neo4jClient.query("""
                 MATCH (a:Account)-[:SENT]->(:Transaction)-[:PAID_TO]->(m:Merchant {merchantId: $merchantId})
-                WHERE a.createdAt > datetime() - duration({days: $daysThreshold})
+                WHERE a.createdAt > localdatetime() - duration({days: $daysThreshold})
                 WITH m, collect(DISTINCT a.accountId) AS newAccountIds
                 WHERE size(newAccountIds) >= 3
                 RETURN m.merchantId AS merchantId, newAccountIds
